@@ -38,12 +38,5 @@ public class BlogService {
 		
 	}
 	
-	@GetMapping("/api/myBlogs/{bloggerId}")
-	public List<Blog> fetchAllBlogsForBloggerr(@PathVariable("bloggerId") String bloggerId)
-	{
-		List<Blog> BlogList = blogRepository.findBlogsOfBlogger(bloggerId);
-				//reviewRepository.findReviewsOfReviewer(userId);
-		return BlogList; 
-	}
 
 }
