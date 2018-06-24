@@ -10,6 +10,6 @@ import myapp.models.User;
 public interface UserRepository extends CrudRepository<User, Integer>{
 	
 	@Query("Select p from User p where p.username =:username and p.password =:password")
-	public List<User>findUserByUsernameAndPassword(@Param("username") String email,@Param("password") String password);
+	public List<User>findUserByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
 
 }
