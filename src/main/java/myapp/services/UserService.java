@@ -38,7 +38,7 @@ public class UserService {
 		System.out.println(user.getEmail());
 		System.out.println(user.getPassword());
 	
-		List<User> usersList = userRepository.findUserByUsernameAndPassword(user.getEmail(),user.getPassword());
+		List<User> usersList = userRepository.findUserByUsernameAndPassword(user.getUsername(),user.getPassword());
 		if(usersList.size() == 0) {
 			user =  new User();
 			System.out.println(user.getId());
