@@ -9,7 +9,6 @@
 .settings
 .springBeans
 .sts4-cache
-.png
 
 ### IntelliJ IDEA ###
 .idea
@@ -24,4 +23,3 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-/.metadata/
