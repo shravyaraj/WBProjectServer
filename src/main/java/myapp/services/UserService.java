@@ -1,9 +1,13 @@
 package myapp.services;
+<<<<<<< HEAD
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,7 +35,7 @@ public class UserService {
 		System.out.println("inside the create user method");
 		return userRepository.save(user);
 	}
-	
+
 	@PutMapping("/api/user/{userId}")
 	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
 		System.out.println(userId);
@@ -71,6 +75,21 @@ public class UserService {
 		  System.out.println(user.getEmail());
 		  System.out.println(user.getPassword());
 		List<User> usersList = userRepository.findUserByUsernameAndPassword(user.getEmail(),user.getPassword());
+		
+	@GetMapping("/api/user")
+	public Iterable<User> findAllUser() {
+		return userRepository.findAll();
+	}
+	
+	@PostMapping("/api/login")
+	public User login(@RequestBody User user) {
+		System.out.println(user);
+		System.out.println("Inside login");
+		System.out.println(user.getEmail());
+		System.out.println(user.getPassword());
+	
+		List<User> usersList = userRepository.findUserByUsernameAndPassword(user.getUsername(),user.getPassword());
+
 		if(usersList.size() == 0) {
 			user =  new User();
 			System.out.println(user.getId());
@@ -80,6 +99,7 @@ public class UserService {
 			System.out.println("Here I am :"+user.getId());
 		}
 		return user;
+
 		}
 	    
 	    @PostMapping(value=("/api/user/{userId}/coverPicture"), headers="content-type=multipart/*")
@@ -119,6 +139,7 @@ public class UserService {
 			}
 			return null;
 		}
+	}
 
 }
 
