@@ -89,8 +89,7 @@ public class UserService {
 			
 			AWService aws = new AWService();
 			
-			
-			 File convFile = new File(multiPartFileObj.getOriginalFilename());
+			File convFile = new File(multiPartFileObj.getOriginalFilename());
 			    try {
 					convFile.createNewFile();
 					FileOutputStream fos = new FileOutputStream(convFile); 
@@ -105,13 +104,11 @@ public class UserService {
 			    
 			    String fileName = aws.createFile(convFile,userId);
 			    updateCoverPic(userId, fileName);
-			    
-			    
-	    }
+			}
 	    
-	    public User updateCoverPic(int userId, String fileName) {
+	        public User updateCoverPic(int userId, String fileName) {
 			System.out.println(userId);
-			System.out.println(fileName);
+			System.out.println("YAAAAAAAY"+fileName);
 			Optional<User> data = userRepository.findById(userId);
 			User newUser = null;
 			if(data.isPresent()) {

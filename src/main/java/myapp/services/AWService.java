@@ -55,24 +55,13 @@ public class AWService {
 						.withCannedAcl(CannedAccessControlList.PublicRead));
 				return fileName;
 				}
-			   /*
+			   
+			
+				/*
 				public static void deleteFile(AmazonS3 client, String filename){
 					client.deleteObject("book-worms", filename);
 				}
 				*/
-				public User updateCoverPic(int userId, String fileName) {
-					System.out.println(userId);
-					System.out.println(fileName);
-					Optional<User> data = userRepository.findById(userId);
-					User newUser = null;
-					if(data.isPresent()) {
-						User user = data.get();
-						user.setCoverPic(newUser.getCoverPic());
-						userRepository.save(user);
-						return user;
-					}
-					return null;
-				}
 }
 
 
