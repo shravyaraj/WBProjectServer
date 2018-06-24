@@ -13,5 +13,6 @@ public interface BlogRepository extends CrudRepository<Blog, Integer> {
 	@Query("SELECT br FROM Blog br WHERE br.bloggerId = :bloggerId")
 	Blog findByBloggerId(@Param("bloggerId")String bloggerId);
 	
-
+	@Query("SELECT b FROM Blog b WHERE b.bloggerId = :bloggerId")
+	List <Blog> findAllBlogsforUser(@Param("bloggerId")String bloggerId);
 }

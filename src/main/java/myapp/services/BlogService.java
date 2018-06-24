@@ -38,5 +38,14 @@ public class BlogService {
 		
 	}
 	
+	@GetMapping("/api/blogger/{bloggerID}")
+	public List<Blog>findAllBlogsforUser(@PathVariable("bloggerID") String bloggerId){
+		List<Blog> blogList =  blogRepository.findAllBlogsforUser(bloggerId);
+		return blogList; 
+		
+	}
+	
+	
+	
 
 }
