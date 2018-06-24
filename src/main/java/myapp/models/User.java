@@ -1,6 +1,7 @@
 package myapp.models;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,9 @@ public class User {
 	private String gender;
 	private String email;
 	private String role;
+	private String bio;
+	private String coverPic; 
+	private ArrayList<String> category = new ArrayList<String>();
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="GMT")
 	private Date dateOfBirth;
@@ -80,5 +84,23 @@ public class User {
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+	public String getBio() {
+		return bio;
+	}
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+	public ArrayList<String> getCategory() {
+		return category;
+	}
+	public void setCategory(ArrayList<String> category) {
+		this.category = category;
+	}
+	public String getCoverPic() {
+		return coverPic;
+	}
+	public void setCoverPic(String coverPic) {
+		this.coverPic = coverPic;
 	}
 }
