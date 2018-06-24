@@ -1,6 +1,5 @@
 package myapp.repositories;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,8 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import myapp.models.User;
-
-=======
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

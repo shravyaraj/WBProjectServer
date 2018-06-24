@@ -1,5 +1,4 @@
 package myapp.services;
-<<<<<<< HEAD
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -67,14 +66,6 @@ public class UserService {
 		return null;
 	}
 	
-	
-	    @PostMapping("/api/login")
-	    public User login(@RequestBody User user) {
-		  System.out.println(user);
-		  System.out.println("Inside login");
-		  System.out.println(user.getEmail());
-		  System.out.println(user.getPassword());
-		List<User> usersList = userRepository.findUserByUsernameAndPassword(user.getEmail(),user.getPassword());
 		
 	@GetMapping("/api/user")
 	public Iterable<User> findAllUser() {
@@ -141,5 +132,5 @@ public class UserService {
 		}
 	}
 
-}
+
 
