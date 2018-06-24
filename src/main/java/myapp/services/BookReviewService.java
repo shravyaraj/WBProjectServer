@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import myapp.models.BookReviews;
+import myapp.models.Topic;
 import myapp.repositories.BookReviewRepository;
 
 
@@ -23,6 +24,12 @@ public class BookReviewService {
 	
 	@Autowired
 	BookReviewRepository reviewRepository;
+	
+	@GetMapping("/api/reviews")
+	public Iterable<BookReviews>findAllReviews(){
+		return reviewRepository.findAll();
+		
+	}
 	
 	@PostMapping("/api/review/{isbn}")
 	public BookReviews createReview(@PathVariable("isbn") String isbn, @RequestBody BookReviews newReview) {
