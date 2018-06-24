@@ -15,6 +15,7 @@ public class Event {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int publisherId;
+	private int publisherName;
 	private String publisher_imgURL;
 	private String event_imgURL;
 	private String event_info;
@@ -47,5 +48,11 @@ public class Event {
 	}
 	public void setEvent_info(String event_info) {
 		this.event_info = event_info;
+	}
+	public int getPublisherName() {
+		return publisherName;
+	}
+	public void setPublisherName(int publisherName) {
+		this.publisherName = publisherName;
 	}
 }

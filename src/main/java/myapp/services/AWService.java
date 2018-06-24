@@ -48,9 +48,9 @@ public class AWService {
 			  .withRegion(Regions.US_EAST_1)
 			  .build();
 	
-			   public String createFile(File imgFile, int userId) {
+			   public String createFile(String folderName, File imgFile, int userId) {
 				   System.out.println("inside AWS file upload");
-				   String fileName = imgFile.getName();
+				   String fileName = folderName + imgFile.getName();
 					client.putObject(new PutObjectRequest("book-worms", fileName, imgFile)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
 				return fileName;
