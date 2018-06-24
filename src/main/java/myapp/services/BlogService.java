@@ -1,5 +1,7 @@
 package myapp.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,14 @@ public class BlogService {
 	public Iterable<Blog>findAllBlogs(){
 		return blogRepository.findAll();
 		
+	}
+	
+	@GetMapping("/api/myBlogs/{bloggerId}")
+	public List<Blog> fetchAllBlogsForBloggerr(@PathVariable("bloggerId") String bloggerId)
+	{
+		List<Blog> BlogList = blogRepository.findBlogsOfBlogger(bloggerId);
+				//reviewRepository.findReviewsOfReviewer(userId);
+		return BlogList; 
 	}
 
 }
