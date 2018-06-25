@@ -39,6 +39,8 @@ public class EventServices {
 		eventRepository.deleteById(id);
 	}
 	
+	
+	
 	@PutMapping("/api/event/{eventId}")
 	public Event updateEvent(@PathVariable("eventId") int eventId, @RequestBody Event newEvent) {
 		System.out.println(eventId);
@@ -79,6 +81,8 @@ public class EventServices {
 		    String fileName = aws.createFile("events",convFile,userId);
 		    updateEvent(userId, fileName);
 		}
+	
+	
 		public Event updateEvent(int eventId, String fileName) {
 				System.out.println(eventId+fileName);
 				Optional<Event> data = eventRepository.findById(eventId);
@@ -92,6 +96,7 @@ public class EventServices {
 				return null;
 		}
 		
+
 		@GetMapping("/api/event")
 		public Iterable<Event>findAllEvents(){
 			return eventRepository.findAll();
@@ -103,5 +108,8 @@ public class EventServices {
 			return eventList; 
 			
 		}	
+
+		
+
 
 }
