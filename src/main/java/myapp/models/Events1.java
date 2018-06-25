@@ -1,4 +1,4 @@
-package myapp.models;
+/*package myapp.models;
 
 import java.sql.Date;
 
@@ -47,3 +47,4 @@ public class Events1 {
 	private Date modified;
 
 }
+*/
