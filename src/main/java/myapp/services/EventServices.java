@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import myapp.models.Event;
-import myapp.models.User;
+
 import myapp.repositories.EventRepository;
 
 @RestController
