@@ -1,12 +1,14 @@
 package myapp.services;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,7 +52,8 @@ public class AWService {
 	
 			   public String createFile(String folderName, File imgFile, int userId) {
 				   System.out.println("inside AWS file upload"+ folderName);
-				   String fileName = imgFile.getName();
+				   Date timestamp= new java.util.Date();
+				   String fileName = timestamp+"_"+imgFile.getName();
 					client.putObject(new PutObjectRequest("bookwormstest", fileName, imgFile)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
 				return fileName;

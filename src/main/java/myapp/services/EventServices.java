@@ -41,7 +41,7 @@ public class EventServices {
 	
 	
 	
-	@PutMapping("/api/event/{eventId}")
+	/*@PutMapping("/api/event/{eventId}")
 	public Event updateEvent(@PathVariable("eventId") int eventId, @RequestBody Event newEvent) {
 		System.out.println(eventId);
 		System.out.println("Event Updated");
@@ -56,7 +56,7 @@ public class EventServices {
 			return event;
 		}
 		return null;
-	}
+	}*/
 	
 	@PostMapping(value=("/api/user/{userId}/event"), headers="content-type=multipart/*")
 	public void updateEvent(@RequestParam("file0") MultipartFile multiPartFileObj, @PathVariable("userId") int userId){
@@ -78,13 +78,21 @@ public class EventServices {
 				e.printStackTrace();
 			} 
 		    
+		    try {
 		    String fileName = aws.createFile("events",convFile,userId);
-		    updateEvent(userId, fileName);
+		    System.out.println(fileName);
+		    }
+		    catch(Exception e)
+		    {
+		    	e.printStackTrace();
+		    }
+		    
+		   
 		}
 	
-	
-		public Event updateEvent(int eventId, String fileName) {
-				System.out.println(eventId+fileName);
+	/*
+		public Event updateEvent(int userId, String fileName) {
+				System.out.println(eventId+""+fileName);
 				Optional<Event> data = eventRepository.findById(eventId);
 				Event newEvent = null;
 				if(data.isPresent()) {
@@ -94,7 +102,7 @@ public class EventServices {
 					return event;
 				}
 				return null;
-		}
+		}*/
 		
 
 		@GetMapping("/api/event")

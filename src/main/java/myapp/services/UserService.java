@@ -125,7 +125,7 @@ public class UserService {
 			    updateCoverPic(userId, fileName);
 			}
 	    
-	        public User updateCoverPic(int userId, String fileName) {
+	 public User updateCoverPic(int userId, String fileName) {
 			System.out.println(userId);
 			System.out.println("YAAAAAAAY"+fileName);
 			Optional<User> data = userRepository.findById(userId);
