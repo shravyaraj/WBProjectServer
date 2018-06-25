@@ -3,11 +3,13 @@ package myapp.services;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import myapp.models.Blog;
 import myapp.models.Event;
 import myapp.models.User;
 import myapp.repositories.EventRepository;
@@ -79,8 +82,7 @@ public class EventServices {
 		    updateEvent(userId, fileName);
 		}
 		public Event updateEvent(int eventId, String fileName) {
-				System.out.println(eventId);
-				System.out.println("YAAAAAAAY"+fileName);
+				System.out.println(eventId+fileName);
 				Optional<Event> data = eventRepository.findById(eventId);
 				Event newEvent = null;
 				if(data.isPresent()) {
@@ -91,5 +93,17 @@ public class EventServices {
 				}
 				return null;
 		}
+		
+		@GetMapping("/api/event")
+		public Iterable<Event>findAllEvents(){
+			return eventRepository.findAll();
+		}
+		
+		@GetMapping("/api/event/{publisherId}")
+		public List<Event>findAllEventsForPublisher(@PathVariable("publisherId") String publisherId){
+			List<Event> eventList =  eventRepository.findAllEventsForPublisher(publisherId);
+			return eventList; 
+			
+		}	
 
 }

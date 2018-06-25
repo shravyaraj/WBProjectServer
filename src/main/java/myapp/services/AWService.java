@@ -49,8 +49,8 @@ public class AWService {
 			  .build();
 	
 			   public String createFile(String folderName, File imgFile, int userId) {
-				   System.out.println("inside AWS file upload");
-				   String fileName = folderName + imgFile.getName();
+				   System.out.println("inside AWS file upload"+ folderName);
+				   String fileName = folderName + "/" + imgFile.getName();
 					client.putObject(new PutObjectRequest("book-worms", fileName, imgFile)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
 				return fileName;
