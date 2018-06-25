@@ -12,6 +12,7 @@ import myapp.models.User;
 
 public interface UserRepository extends CrudRepository<User, Integer>{
 
+
 	@Query("Select p from User p where p.username =:username and p.password =:password")
 	public List<User>findUserByUsernameAndPassword(@Param("username") String email,@Param("password") String password);
 	
@@ -20,6 +21,7 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 	
 	@Query("SELECT usr FROM User usr WHERE LOWER(usr.firstName) LIKE CONCAT(LOWER(:firstName),'%')")
 	public List<User> findByFirstName(@Param("firstName") String firstName);
+
 	
 	@Query("SELECT usr FROM User usr WHERE LOWER(usr.lastName) LIKE CONCAT(LOWER(:lastName),'%')")
 	public List<User> findByLastName(@Param("lastName") String lastName);
