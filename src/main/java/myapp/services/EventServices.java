@@ -3,11 +3,13 @@ package myapp.services;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import myapp.models.BookReviews;
 import myapp.models.Event;
 
 import myapp.repositories.EventRepository;
@@ -37,6 +40,8 @@ public class EventServices {
 	public void deleteEvent(@PathVariable("eventId") int id) {
 		eventRepository.deleteById(id);
 	}
+	
+	
 	
 	@PutMapping("/api/event/{eventId}")
 	public Event updateEvent(@PathVariable("eventId") int eventId, @RequestBody Event newEvent) {
@@ -78,6 +83,8 @@ public class EventServices {
 		    String fileName = aws.createFile("events",convFile,userId);
 		    updateEvent(userId, fileName);
 		}
+	
+	
 		public Event updateEvent(int eventId, String fileName) {
 				System.out.println(eventId);
 				System.out.println("YAAAAAAAY"+fileName);
@@ -90,6 +97,13 @@ public class EventServices {
 					return event;
 				}
 				return null;
+		}
+		
+		@GetMapping("/api/event/{userId}")
+		public List<Event> fetchAllEventsForPublisher(@PathVariable("userId") String userId)
+		{
+			List<Event> events = eventRepository.findAllEventsForPublisher(userId);
+			return events; 
 		}
 
 }
