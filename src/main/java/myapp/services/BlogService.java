@@ -46,8 +46,9 @@ public class BlogService {
 		
 	}
 	
-	@DeleteMapping("/api/blog/{blogId}")
-	public void delete(@PathVariable("topicId") int id) {
+	@DeleteMapping("/api/bloger/{blogId}")
+	public void delete(@PathVariable("blogId") int id) {
+		System.out.println("hello");
 		blogRepository.deleteById(id);	
 	}
 	
