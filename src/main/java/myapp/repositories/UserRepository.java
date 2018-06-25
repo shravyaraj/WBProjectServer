@@ -27,7 +27,6 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 	public List<User> findByLastName(@Param("lastName") String lastName);
 
 	@Query("SELECT u FROM User u WHERE u.username=:username")
-	Optional<User> findUserByUsername(
-			@Param("username") String username);
+	Optional<User> findUserByUsername(@Param("username") String username);
 
 }
