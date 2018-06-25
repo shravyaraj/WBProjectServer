@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import myapp.models.Blog;
-import myapp.models.BookReviews;
-import myapp.models.Topic;
 import myapp.repositories.BlogRepository;
-import myapp.repositories.BookReviewRepository;
+
 
 @RestController
 @CrossOrigin(origins = "*",maxAge = 3600)
