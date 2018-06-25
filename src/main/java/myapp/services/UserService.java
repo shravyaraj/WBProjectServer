@@ -84,7 +84,7 @@ public class UserService {
 	public User login(@RequestBody User user) {
 		System.out.println(user);
 		System.out.println("Inside login");
-		System.out.println(user.getEmail());
+		System.out.println(user.getUsername());
 		System.out.println(user.getPassword());
 	
 		List<User> usersList = userRepository.findUserByUsernameAndPassword(user.getUsername(),user.getPassword());
@@ -121,7 +121,7 @@ public class UserService {
 					e.printStackTrace();
 				} 
 			    
-			    String fileName = aws.createFile(convFile,userId);
+			    String fileName = aws.createFile("cover-pictures",convFile,userId);
 			    updateCoverPic(userId, fileName);
 			}
 	    
