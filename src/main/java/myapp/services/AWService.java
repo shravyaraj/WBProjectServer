@@ -51,9 +51,7 @@ public class AWService {
 			  .build();
 	
 			   public String createFile(String folderName, File imgFile, int userId) {
-				   System.out.println("inside AWS file upload"+ folderName);
-				   Date timestamp= new java.util.Date();
-				   String fileName = timestamp+"_"+imgFile.getName();
+				   String fileName = imgFile.getName();
 					client.putObject(new PutObjectRequest("bookwormstest", fileName, imgFile)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
 				return fileName;
