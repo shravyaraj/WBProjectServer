@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import myapp.models.Blog;
-import myapp.models.BookReviews;
-import myapp.models.Topic;
 import myapp.repositories.BlogRepository;
-import myapp.repositories.BookReviewRepository;
+
 
 @RestController
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -57,12 +53,12 @@ public class BlogService {
 		
 	}
 	
-	@DeleteMapping("/api/blog/{blogId}")
-	public void delete(@PathVariable("topicId") int id) {
+	
+	@DeleteMapping("/api/bloger/{blogId}")
+	public void delete(@PathVariable("blogId") int id) {
+		System.out.println("hello");
 		blogRepository.deleteById(id);	
 	}
-
-	
 	
 
 }
