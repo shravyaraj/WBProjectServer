@@ -195,6 +195,30 @@ public class UserService {
 		 
 	 }
 	 
+	 @GetMapping("/api/unfollow/{followerId}/{followingId}")
+		public void unfollow(@PathVariable("followerId") int followerId,@PathVariable("followingId") int followingId){
+		 	
+		 System.out.println(followerId + "is unfollowing "+ followingId);
+		 Optional<User> follower = userRepository.findById(followerId);
+		 Optional<User> following = userRepository.findById(followingId);
+		 User followeruser = follower.get();
+		 User followinguser = following.get();
+		 Collection<User> followersfollowingcollection = follower.get().getFollowingCollection();
+		 Collection<User> followedUsersfollwercollection = following.get().getFollowerCollection();
+		 followersfollowingcollection.remove(followinguser);
+		 followedUsersfollwercollection.remove(followeruser);
+		 
+		 followeruser.setFollowingCollection(followersfollowingcollection);
+		 userRepository.save(followeruser);
+		 
+		 
+		 followinguser.setFollowerCollection(followedUsersfollwercollection);
+		 userRepository.save(followinguser);
+		 
+
+		 
+	 }
+	 
 	 @GetMapping("/api/findfollowers/{userId}")
 		public Collection<User> follow(@PathVariable("userId") int userId){
 		 	
