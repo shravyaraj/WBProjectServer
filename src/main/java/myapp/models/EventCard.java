@@ -1,4 +1,4 @@
-/*package myapp.models;
+package myapp.models;
 
 import java.sql.Date;
 
@@ -9,16 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
-@Table(name = "events1")
-public class Events1 {
+@Table(name = "events_card")
+public class EventCard {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="GMT")
+	private Date dateOfEvent;
+
 	public int getId() {
 		return id;
 	}
@@ -31,20 +34,12 @@ public class Events1 {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getCreated() {
-		return created;
+	public Date getDateOfEvent() {
+		return dateOfEvent;
 	}
-	public void setCreated(Date created) {
-		this.created = created;
+	public void setDateOfEvent(Date dateOfEvent) {
+		this.dateOfEvent = dateOfEvent;
 	}
-	public Date getModified() {
-		return modified;
-	}
-	public void setModified(Date modified) {
-		this.modified = modified;
-	}
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date modified;
+	
 
 }
-*/
