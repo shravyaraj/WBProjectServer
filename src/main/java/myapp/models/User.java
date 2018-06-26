@@ -2,14 +2,19 @@ package myapp.models;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table (name="User")
@@ -27,10 +32,40 @@ public class User {
 	private String bio;
 	private String coverPic; 
 	private ArrayList<String> category = new ArrayList<String>();
+	@JoinTable(name = "Following", joinColumns = {
+			@JoinColumn(name = "User", referencedColumnName = "id", nullable = false)}, inverseJoinColumns = {
+					@JoinColumn(name = "following", referencedColumnName = "id", nullable = false)})
+	@ManyToMany
+	@JsonIgnore
+	private Collection<User>followingCollection;
+	
+	@JoinTable(name = "Follower", joinColumns = {
+			@JoinColumn (name = "User", referencedColumnName = "id", nullable = false)}, inverseJoinColumns = {
+					@JoinColumn(name = "follower", referencedColumnName = "id", nullable = false)})
+	@ManyToMany
+	@JsonIgnore
+	private Collection<User>followerCollection;
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="GMT")
 	private Date dateOfBirth;
 	
+	
+	
+	
+	
+	
+	public Collection<User> getFollowingCollection() {
+		return followingCollection;
+	}
+	public void setFollowingCollection(Collection<User> followingCollection) {
+		this.followingCollection = followingCollection;
+	}
+	public Collection<User> getFollowerCollection() {
+		return followerCollection;
+	}
+	public void setFollowerCollection(Collection<User> followerCollection) {
+		this.followerCollection = followerCollection;
+	}
 	public int getId() {
 		return id;
 	}

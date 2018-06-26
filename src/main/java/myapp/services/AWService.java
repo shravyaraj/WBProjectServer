@@ -51,6 +51,7 @@ public class AWService {
 			  .build();
 	
 			   public String createFile(String folderName, File imgFile, int userId) {
+
 				   System.out.println("inside AWS file upload"+ folderName);
 				   String fileName = imgFile.getName();
 					client.putObject(new PutObjectRequest("bookwormstest", fileName, imgFile)
