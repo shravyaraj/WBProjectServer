@@ -1,6 +1,7 @@
 package myapp.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,8 +9,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import myapp.models.Blog;
 import myapp.models.BookReviews;
@@ -38,6 +41,14 @@ public class BlogService {
 		return blogRepository.findAll();
 		
 	}
+	
+	@PutMapping("/api/blog/{blogId}")
+	public Blog updateBlog(@RequestBody Blog blog,@PathVariable("blogId") int blogId){
+		Blog blog1 = blogRepository.findById(blogId).get();
+		blog1.setBlog(blog.getBlog());
+		blogRepository.save(blog1);
+		return blog1;
+		}
 	
 	@GetMapping("/api/blogger/{bloggerID}")
 	public List<Blog>findAllBlogsforUser(@PathVariable("bloggerID") String bloggerId){
