@@ -1,6 +1,7 @@
 package myapp.services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -125,7 +126,7 @@ public class UserService {
 			    updateCoverPic(userId, fileName);
 			}
 	    
-	 public User updateCoverPic(int userId, String fileName) {
+	        public User updateCoverPic(int userId, String fileName) {
 			System.out.println(userId);
 			System.out.println("YAAAAAAAY"+fileName);
 			Optional<User> data = userRepository.findById(userId);
@@ -169,6 +170,55 @@ public class UserService {
 		return finalSet;
 		
 	}
+	
+	 @GetMapping("/api/user/{followerId}/{followingId}")
+		public void follow(@PathVariable("followerId") int followerId,@PathVariable("followingId") int followingId){
+		 	
+		 System.out.println(followerId + "is following "+ followingId);
+		 Optional<User> follower = userRepository.findById(followerId);
+		 Optional<User> following = userRepository.findById(followingId);
+		 User followeruser = follower.get();
+		 User followinguser = following.get();
+		 Collection<User> followersfollowingcollection = follower.get().getFollowingCollection();
+		 Collection<User> followedUsersfollwercollection = following.get().getFollowerCollection();
+		 followersfollowingcollection.add(followinguser);
+		 followedUsersfollwercollection.add(followeruser);
+		 
+		 followeruser.setFollowingCollection(followersfollowingcollection);
+		 userRepository.save(followeruser);
+		 
+		 
+		 followinguser.setFollowerCollection(followedUsersfollwercollection);
+		 userRepository.save(followinguser);
+		 
+ 
+		 
+	 }
+	 
+	 @GetMapping("/api/findfollowers/{userId}")
+		public Collection<User> follow(@PathVariable("userId") int userId){
+		 	
+		 Optional<User> user = userRepository.findById(userId);
+		 return user.get().getFollowerCollection();
+		 
+
+		 
+	 }
+	 
+	 @GetMapping("/api/findfollowing/{userId}")
+		public Collection<User> following(@PathVariable("userId") int userId){
+		 	
+		 Optional<User> user = userRepository.findById(userId);
+		 return user.get().getFollowingCollection();
+		 
+
+		 
+	 }
+	 
+	 
+	 
+	
+	
 }
 	
 	
