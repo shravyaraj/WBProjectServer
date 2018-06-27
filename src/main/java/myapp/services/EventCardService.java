@@ -1,6 +1,7 @@
 package myapp.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -45,4 +46,12 @@ public class EventCardService {
 	public void delete(@PathVariable("eventcardId") int eventcardId) {
 		eventCardRepository.deleteById(eventcardId);	
 	}
+	
+	@GetMapping("/api/eventcard/{publisherId}")
+	public List<EventCard>findAllEventCardForPublisher(@PathVariable("publisherId") String publisherId){
+	List<EventCard> eventCardList =  eventCardRepository.findAllEventCardForPublisher(publisherId);
+			return eventCardList; 
+			
+	}
+
 }

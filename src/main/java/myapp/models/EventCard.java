@@ -21,6 +21,15 @@ public class EventCard {
 	private String title;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="GMT")
 	private Date dateOfEvent;
+	private String publisherId;
+	
+	public String getPublisherId() {
+		return publisherId;
+	}
+	public void setPublisherId(String publisherId) {
+		this.publisherId = publisherId;
+	}
+
 
 	public int getId() {
 		return id;
