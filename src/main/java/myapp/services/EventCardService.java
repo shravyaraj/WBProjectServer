@@ -47,7 +47,7 @@ public class EventCardService {
 		eventCardRepository.deleteById(eventcardId);	
 	}
 	
-	@GetMapping("/api/eventcard/{publisherId}")
+	@GetMapping("/api/eventcard/publisher/{publisherId}")
 	public List<EventCard>findAllEventCardForPublisher(@PathVariable("publisherId") String publisherId){
 	List<EventCard> eventCardList =  eventCardRepository.findAllEventCardForPublisher(publisherId);
 			return eventCardList; 
