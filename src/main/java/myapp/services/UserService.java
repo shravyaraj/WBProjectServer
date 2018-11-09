@@ -1,12 +1,17 @@
 package myapp.services;
 
 import java.util.ArrayList;
+
+import java.util.HashMap;
+
 import java.util.Collection;
+
 import java.util.HashSet;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,7 +22,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -59,13 +67,25 @@ public class UserService {
 	}
 	
 	
-	@GetMapping("/api/profile/{username}")
-	public User findUserByUsername(@PathVariable("username") String username) {
-		Optional<User> data = userRepository.findUserByUsername(username);
-		if(data.isPresent()) {
-			return data.get();
+	@GetMapping("/api/users/{username}")
+	public Map <String,String> findUserByUsername(@PathVariable("username") String username) {
+		Map<String,String> result = new HashMap <String,String>();
+		String exists;
+		
+		List<User> userlist = (List<User>) userRepository.findUserByUsername(username);
+		if(userlist.size() == 0) {
+			exists = "false";
 		}
-		return null;
+		
+		else {
+			exists = "true";
+		}
+		
+		System.out.println(exists);
+		
+		result.put("exists"," "+exists);
+		return result;
+	
 	}
 	
 		

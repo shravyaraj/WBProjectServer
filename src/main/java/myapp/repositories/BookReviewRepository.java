@@ -8,10 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import myapp.models.BookReviews;
 
-
-
-
-
 public interface BookReviewRepository extends CrudRepository<BookReviews, Integer>{
 	
 	@Query("SELECT br FROM BookReviews br WHERE br.reviewerId = :reviewerId AND br.isbn = :isbn")
